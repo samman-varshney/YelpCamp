@@ -1,0 +1,29 @@
+<% layout('layouts/boilerplate') %>
+    <% block('title').prepend('Yelp Camp') %>
+        <h1>Available Campgrounds <button><a style="text-decoration: none;color:black;"
+                    href="/campgrounds/new">add</a></button></h1>
+
+        <%for(let campground of campgrounds){%>
+            <div class="card mb-3">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="<%=campground.image%>" alt="" class="img-fluid">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <%= campground.title %>
+                            </h5>
+                            <div class="card-text mb-2">
+                                <%= campground.description %>
+                            </div>
+                            <div class="card-text mb-2"><small class="text-muted">
+                                    <%= campground.location%>
+                                </small></div>
+                            <a href="/campgrounds/<%=campground._id%>/show" class="btn btn-primary">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <%}%>

@@ -1,0 +1,72 @@
+<% layout('layouts/boilerplate') %>
+    <% block('title').prepend(`Edit ${camp.title}`) %>
+
+
+        <div class="row">
+            <h1 class="text-center">Edit Campground</h1>
+            <div class="col-6 offset-3">
+
+                <form method='POST' action="/campgrounds/<%=camp._id%>/edit?_method=PATCH" novalidate
+                    class="validate-form">
+                    <div class="mb-2">
+                        <label class="form-label" for="title">Title : </label>
+                        <input class="form-control" type="text" name="campground[title]" id="title"
+                            value="<%=camp.title%>" required>
+                        <div class="invalid-feedback">
+                            Please provide a valid Campground name.
+                        </div>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="mb-2"><label class="form-label" for="location">Location : </label>
+                        <input class="form-control" type="text" name="campground[location]" id="location"
+                            value="<%=camp.location%>" required>
+                        <div class="invalid-feedback">
+                            Please provide a valid Location.
+                        </div>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="mb-2"><label class="form-label" for="price">Price : </label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">&#x20b9;</span>
+                            <input value="<%=camp.price%>" type="text" class="form-control" id="price"
+                                name="campground[price]" placeholder="0.00" aria-label="price"
+                                aria-describedby="basic-addon1" required>
+                            <div class="invalid-feedback">
+                                Please provide a valid price
+                            </div>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-2"><label class="form-label" for="image">Add image link :</label>
+                        <input class="form-control" type="text" name="campground[image]" id="image"
+                            value="<%=camp.image%>" required>
+                        <div class="invalid-feedback">
+                            Please provide a valid image.
+                        </div>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+
+                    <div class="mb-3"><label class="form-label" for="description">Description : </label>
+                        <textarea class="form-control" name="campground[description]" id="description"
+                            required><%= camp.description %></textarea>
+                        <div class="invalid-feedback">
+                            Please provide a valid description.
+                        </div>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="mb-2"><button class="btn btn-info" type="submit">Update</button></div>
+                </form>
+                <a href="/campgrounds/<%=camp._id%>/show">Back</a>
+            </div>
+        </div>

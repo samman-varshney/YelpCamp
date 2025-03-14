@@ -1,0 +1,39 @@
+<!-- below statement is to export this file to boilerplate in layouts  -->
+<% layout('layouts/boilerplate') %>
+    <!-- this line is to append a stylesheet style1.css to the headof boilerplate  -->
+    <% block('head').append('<link rel="stylesheet" href="/css/style1.css">') %>
+        <!-- this line is to append the content of titleto title tag of the boilerplate -->
+        <% block('title').prepend(`${camp.title}`) %>
+
+            <div class="row">
+                <div class="col-6 offset-3">
+                    <div class="card">
+                        <img src="<%=camp.image%>" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <%=camp.title%>
+                            </h5>
+                            <p class="card-text">
+                                <%=camp.description%>
+                            </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <%=camp.location%>
+                            </li>
+                            <li class="list-group-item">
+                                &#8377; <%=camp.price%> per night
+                            </li>
+
+                        </ul>
+                        <div class="card-body">
+                            <a class="card-link btn btn-info" href="/campgrounds/<%=camp.id%>/edit">Edit</a>
+                            <form class="d-inline" method="POST"
+                                action="/campgrounds/<%=camp.id%>/delete?_method=DELETE"><button class="btn btn-danger"
+                                    type="submit">Delete</button>
+                            </form>
+                            <a href="/campgrounds" class="card-link btn btn-primary">Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
