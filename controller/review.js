@@ -1,6 +1,6 @@
 const Campground = require('../models/campground');
 const Review = require('../models/review');
-const catchAsync = require('../utility/catchAsync')
+const catchAsync = require('../utility/CatchAsync')
 const ExpressError = require('../utility/ExpressError');
 
 
