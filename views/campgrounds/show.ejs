@@ -96,7 +96,8 @@
     <!-- Right Column -->
     <div class="col-md-6">
         <!-- Map -->
-        <div id="map" class="rounded-4 shadow-lg mb-4" style="height: <%= currentUser ? '360px' : '100%' %>"></div>
+        <div id="map" class="rounded-4 shadow-lg mb-4" 
+        style="height: <%= currentUser ? '360px;' : '100%;' %>; min-height: 360px;"></div>
         <!-- Review Form -->
         <% if(currentUser) { %>
             <div class="card shadow rounded-4 mb-4">
