@@ -1,4 +1,4 @@
-const catchAsync = require('../utility/catchAsync');
+const catchAsync = require('../utility/CatchAsync');
 const Campground = require('../models/campground');
 const {cloudinary} = require('../cloudinary');
 const maptilerClient = require("@maptiler/client");
