@@ -83,7 +83,7 @@
                 <% if (currentUser && camp.owner.email === currentUser.email) { %>
                     <div>
                         <a href="/campgrounds/<%= camp.id %>/edit" class="btn btn-outline-info me-2">Edit</a>
-                        <form class="d-inline" method="POST" action="/campgrounds/<%= camp.id %>/delete?_method=DELETE">
+                        <form class="d-inline" method="POST" action="/campgrounds/<%= camp.id %>/delete?_method=DELETE" onsubmit="disableFormButton(event)">
                             <button class="btn btn-outline-danger" type="submit">Delete</button>
                         </form>
                     </div>
@@ -103,7 +103,7 @@
             <div class="card shadow rounded-4 mb-4">
                 <div class="card-body">
                     <h5 class="card-title">Leave a Review</h5>
-                    <form id="reviewform" class="validate-form" action="/campgrounds/<%= camp.id %>/reviews" method="POST" novalidate>
+                    <form id="reviewform" class="validate-form" action="/campgrounds/<%= camp.id %>/reviews" method="POST" novalidate onsubmit="disableFormButton(event)">
                         <div class="mb-3">
                             <fieldset class="starability-basic">
                                 <legend class="form-label mb-1">Rating:</legend>
@@ -152,7 +152,7 @@
                                     <small class="text-muted">Created on: <%= review.createdAt.toLocaleDateString('en-GB') %></small>
                                     
                                     <% if(currentUser && currentUser._id.equals(review.owner._id)) { %>
-                                        <form method="POST" action="/campgrounds/<%= camp.id %>/reviews/<%= review._id %>?_method=DELETE">
+                                        <form method="POST" action="/campgrounds/<%= camp.id %>/reviews/<%= review._id %>?_method=DELETE" onsubmit="disableFormButton(event)">
                                             <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                                         </form>
                                     <% } %>
@@ -177,3 +177,4 @@
     window.camp = <%- JSON.stringify(camp) %>;
 </script>
 <script src="/js/displayMap.js"></script>
+<script src="/js/formButton.js"></script>
