@@ -1,2 +1,89 @@
 <% layout('layouts/boilerplate') %>
-    <h1>Welcome to Yelp Campground!!!!!!!!!!</h1>
+
+<% block('title').prepend(`YelpCamp | Camping You’re Looking For`) %>
+
+<!-- Hero Section -->
+<div class="bg-dark text-white text-center py-5" style="background-image: url('/images/hero-image.avif'); background-size: cover; background-position: center;">
+  <div class="bg-black bg-opacity-50 py-5">
+    <div class="container">
+      <h1 class="display-3 fw-bold">Welcome to YelpCamp 🏕️</h1>
+      <p class="lead mt-3">Discover and share the best campgrounds from around the world.</p>
+      <a href="/campgrounds" class="btn btn-primary btn-lg mt-4 px-4">Explore Campgrounds</a>
+    </div>
+  </div>
+</div>
+
+<!-- Features Section -->
+<div class="container my-5">
+  <div class="row text-center">
+    <div class="col-md-4 mb-4">
+      <i class="bi bi-map-fill text-primary display-5 mb-3"></i>
+      <h4>Browse Locations</h4>
+      <p>Find campgrounds across the globe with map-based search and filtering.</p>
+    </div>
+    <div class="col-md-4 mb-4">
+      <i class="bi bi-star-fill text-warning display-5 mb-3"></i>
+      <h4>Read Reviews</h4>
+      <p>See what fellow campers are saying before you pitch your tent.</p>
+    </div>
+    <div class="col-md-4 mb-4">
+      <i class="bi bi-pencil-square text-success display-5 mb-3"></i>
+      <h4>Share Your Camp</h4>
+      <p>Add your own favorite camping spots and help others discover them.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Call to Action -->
+<div class="bg-light py-5">
+  <div class="container text-center">
+    <h2 class="fw-bold mb-3">Ready to explore the wild?</h2>
+    <a href="/register" class="btn btn-outline-primary btn-lg">Register</a>
+  </div>
+</div>
+
+<!-- About Me -->
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+      <h3 class="fw-bold mb-3">About the Creator</h3>
+      <p class="lead">
+        Hi, I’m <strong>Samman Varshney</strong>, a passionate Computer Science student and full-stack web developer. 
+        I built YelpCamp to explore full-stack development using Node.js, Express, MongoDB, and EJS. 
+        I hope you enjoy discovering and contributing to the world of campgrounds!
+      </p>
+      <div class="mt-3">
+        <a href="mailto:sammanvarshney345@gmail.com" class="btn btn-outline-secondary me-2">Email Me</a>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Contact Section -->
+<div class="bg-light py-5">
+  <div class="container">
+    <h3 class="text-center fw-bold mb-4">Get in Touch</h3>
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <form action="/contact" method="POST" class="row g-3">
+          <div class="col-md-6">
+            <label for="name" class="form-label">Your Name</label>
+            <input type="text" name="name" id="name" class="form-control" required>
+          </div>
+          <div class="col-md-6">
+            <label for="email" class="form-label">Your Email</label>
+            <input type="email" name="email" id="email" class="form-control" required>
+          </div>
+          <div class="col-12">
+            <label for="message" class="form-label">Your Message</label>
+            <textarea name="message" id="message" class="form-control" rows="4" required></textarea>
+          </div>
+          <div class="col-12 text-center">
+            <button class="btn btn-primary px-4" type="submit" disabled>Send</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

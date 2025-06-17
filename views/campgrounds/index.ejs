@@ -1,29 +1,85 @@
 <% layout('layouts/boilerplate') %>
-    <% block('title').prepend('Yelp Camp') %>
-        <h1>Available Campgrounds <button><a style="text-decoration: none;color:black;"
-                    href="/campgrounds/new">add</a></button></h1>
+    <% block('title').prepend('Yelp Camp | Explore Endless Adventure') %>
+    <% block('head').append('<link crossorigin="anonymous" href="https://cdn.maptiler.com/maptiler-sdk-js/v2.0.3/maptiler-sdk.css" rel="stylesheet">') %>
+    <% if (success && success.length !== 0) { %>
+        <div class="alert alert-success alert-dismissible fade show d-flex" role="alert">
+            <strong>Success! </strong> <%= success %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+    <% if (error && error.length !== 0) { %>
+        <div class="alert alert-danger alert-dismissible fade show d-flex" role="alert">
+            <strong>Error! </strong> <%= error %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
 
+            <section class="mb-5">
+    <div id="map" style="width:100%; height: 500px; border-radius: 1rem; overflow: hidden;"></div>
+</section>
+
+        <div class="row">
+            <div class="col-md-8 offset-2">
+
+          
         <%for(let campground of campgrounds){%>
-            <div class="card mb-3">
-                <div class="row">
-                    <div class="col-md-4">
-                        <img src="<%=campground.image%>" alt="" class="img-fluid">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                <%= campground.title %>
-                            </h5>
-                            <div class="card-text mb-2">
-                                <%= campground.description %>
-                            </div>
-                            <div class="card-text mb-2"><small class="text-muted">
-                                    <%= campground.location%>
-                                </small></div>
-                            <a href="/campgrounds/<%=campground._id%>/show" class="btn btn-primary">View</a>
-                        </div>
+
+           <div class="card mb-4 shadow-sm border-0 rounded-4">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <% if (campground.images && campground.images.length > 0) { %>
+                <img src="<%= campground.images[0].url %>" alt="Campground Image" class="img-fluid rounded-start h-100 object-fit-cover">
+            <% } else { %>
+                <img src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" alt="No image" class="img-fluid rounded-start h-100 object-fit-cover">
+            <% } %>
+        </div>
+        <div class="col-md-8">
+            <div class="card-body d-flex flex-column justify-content-between h-100">
+                <div>
+                    <h4 class="card-title text-primary fw-bold mb-2">
+                        <i class="bi bi-tree-fill me-2"></i> <%= campground.title %>
+                    </h4>
+                    <p class="card-text text-muted mb-1">
+                        <i class="bi bi-geo-alt-fill me-1"></i> <%= campground.location %>
+                    </p>
+                    <p class="card-text">
+                        <%= campground.description.length > 150 ? campground.description.substring(0, 150) + '...' : campground.description %>
+                    </p>
+                </div>
+
+                <!-- Rating (static or dynamic based on your data) -->
+                <div class="d-flex align-items-center mb-3">
+                    <span class="me-2 fw-medium">Rating:  </span>
+                    <div>
+                        <% 
+                            const rating = campground.averageRating || 0; // Default 4 if no rating
+                            for (let i = 1; i <= 5; i++) { 
+                        %>
+                            <% if (i <= rating) { %>
+                                <i class="bi bi-star-fill text-warning"></i>
+                            <% } else { %>
+                                <i class="bi bi-star text-warning"></i>
+                            <% } %>
+                        <% } %>
                     </div>
                 </div>
-            </div>
 
+                <a href="/campgrounds/<%= campground._id %>/show" class="btn btn-outline-primary w-100 rounded-pill">
+                    View Details
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+   
             <%}%>
+                 </div>
+    </div>
+        <script crossorigin="anonymous" src="https://cdn.maptiler.com/maptiler-sdk-js/v2.0.3/maptiler-sdk.umd.min.js"></script>
+        <script>
+            const maptilerApiKey = '<%- process.env.MAPTILER_API_KEY %>';
+            const campgrounds = { features: <%- JSON.stringify(campgrounds) %>}
+        </script>
+
+        <script src="/js/clusterMap.js"></script>
