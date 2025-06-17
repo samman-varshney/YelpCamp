@@ -15,6 +15,7 @@ const extension = (joi) => ({
                     allowedTags: [],
                     allowedAttributes: {},
                 });
+                if (process.env.NODE_ENV !== 'development' && clean !== value) return helpers.error('string.escapeHTML', { value });
                 return clean;
             }
         }
