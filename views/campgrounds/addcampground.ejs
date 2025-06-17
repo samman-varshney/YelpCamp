@@ -14,7 +14,7 @@
             <div class="card shadow-lg border-0 rounded-4 p-2">
                 <div class="card-body">
                     <h2 class="text-center mb-3 ">Campground Details</h2>
-                    <form method="POST" action="/campgrounds/new" class="validate-form" enctype="multipart/form-data" novalidate>
+                    <form method="POST" action="/campgrounds/new" class="validate-form" enctype="multipart/form-data" novalidate onsubmit="disableFormButton(event)" >
                         <!-- Title -->
                         <div class="mb-2">
                             <label for="title" class="form-label">Title</label>
@@ -71,3 +71,4 @@
 <!-- Scripts -->
 <script src="/js/bootstrapformValidate.js"></script>
 <script src="/js/fileValidation.js"></script>
+<script src="/js/formButton.js" ></script>
