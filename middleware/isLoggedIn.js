@@ -52,7 +52,7 @@ module.exports.storeReturnTo = function (req, res, next){
 module.exports.validateCampground = async function (req, res, next) {
     console.log("Validating...");
 
-    const { error } = campgroundSchema.validate(req.body);
+    const { error, value } = campgroundSchema.validate(req.body);
 
     if (error) {
         console.log("Validation error");
@@ -76,6 +76,7 @@ module.exports.validateCampground = async function (req, res, next) {
     }
 
     // ✅ If validation passes
+    req.body = value
     next();
 }
 
