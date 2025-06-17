@@ -57,7 +57,7 @@ const CampSchema = mongoose.Schema({
 
 CampSchema.virtual('properties.popUpMarkup').get(function(){
     return `
-    <strong><a href="/campgrounds/${this._id}">${this.title}</a><strong>
+    <strong><a href="/campgrounds/${this._id}/show" >${this.title}</a><strong>
     <p>${this.description.substring(0, 50)}...</p>`
 })
 CampSchema.virtual('averageRating').get(function () {
