@@ -26,7 +26,7 @@
                     <h4 class="display-4 fw-bold text-center">Edit Campground</h4>
                     <form method="POST" action="/campgrounds/<%= camp._id %>/edit?_method=PATCH"
                           enctype="multipart/form-data"
-                          class="validate-form" novalidate>
+                          class="validate-form" novalidate onsubmit="disableFormButton(event)">
                         
                         <!-- Title -->
                         <div class="mb-3">
@@ -122,3 +122,4 @@
 <!-- Scripts -->
 <script src="/js/bootstrapformValidate.js"></script>
 <script src="/js/fileValidation.js"></script>
+<script src="/js/formButton.js" ></script>
