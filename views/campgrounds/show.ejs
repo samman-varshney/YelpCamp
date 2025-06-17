@@ -37,6 +37,7 @@
     <div class="col-md-6">
         <div class="card shadow-lg rounded-4 overflow-hidden">
             <!-- Carousel -->
+        <% if(camp.images.length !== 0) { %>
             <div id="carouselExample" class="carousel slide">
                 <div class="carousel-inner">
                     <% for(let i = 0; i < camp.images.length; i++) { %>
@@ -55,7 +56,17 @@
                     </button>
                 <% } %>
             </div>
+            <%}else{%>
+                <div id="carouselExample" class="carousel slide">
+                <div class="carousel-inner">
+                    
+                        <div class="carousel-item active">
+                            <img src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" class="d-block w-100" style="height: 350px; object-fit: cover;" alt="Camp Image">
 
+                        </div>
+                 
+                </div></div>
+                <%}%>
             <!-- Camp Info -->
             <div class="card-body">
                 <h3 class="card-title fw-bold"><%= camp.title %></h3>
