@@ -24,7 +24,7 @@ const dbURL = process.env.MONGO_DB_URL || 'mongodb://127.0.0.1:27017/yelp-camp';
 
 // 'mongodb://127.0.0.1:27017/yelp-camp'
 
-mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp')
+mongoose.connect(dbURL)
     .then(() => {
         console.log('connected to  database successfully.');
     })
@@ -49,7 +49,7 @@ app.use(mongoSanitize({
 }))
 const secret = process.env.SECRET || 'thisshouldbeasecret';
 const store = new MongoDBStore({
-    url: 'mongodb://127.0.0.1:27017/yelp-camp',
+    url: dbURL,
     secret: secret,
     touchAfter: 24 * 60 * 60
 });
@@ -63,7 +63,7 @@ app.use(session({
     name: 'Colectora',
     secret: secret,
     resave: false,
-    // secure: true,
+    secure: true,
     saveUninitialized: true,
     cookie: {
         
@@ -125,8 +125,7 @@ passport.deserializeUser(User.deserializeUser());
 
 
 app.use((req, res, next) => {
-    // console.log(req.session);
-    // console.log(req.query)
+
     res.locals.currentUser = req.user;
  
     res.locals.success = req.flash('success');
